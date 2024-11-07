@@ -55,5 +55,5 @@ apps:
   - notepad++
 ```
 
-- `repository`: Input your repository without the trailing __"\"__. Also, make sure to escape each __"\"__ with another __"\"__ (e.g. __"\"__ turns into __"\\"__).
+- `repository`: Input your repository without the trailing __"\\"__. Also, make sure to escape each __"\\"__ with another __"\\"__ (e.g. __"\\"__ turns into __"\\\\"__).
 - `apps`: This array will contain all of the software that you want to install/update. Make sure these match with the directory structure in your repository.
