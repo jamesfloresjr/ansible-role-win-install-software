@@ -1,4 +1,4 @@
-# Ansible Role: win_install_software
+# Ansible Role: *win_install_software*
 
 ⚠️ Still in development: 11/7/2024 ⚠️
 
@@ -6,7 +6,7 @@ Install/update software on Windows hosts in an air-gapped network with Ansible.
 
 ## Requirements
 
-Ansible setup for Microsoft Windows host communication. Click here to follow [Ansible Documentation](https://docs.ansible.com/ansible/latest/os_guide/windows_setup.html) on how to set this up.
+Having Ansible setup for Microsoft Windows host communication. Click here to follow the [Ansible Documentation](https://docs.ansible.com/ansible/latest/os_guide/windows_setup.html) step-by-step.
 
 ## Prerequisites
 
