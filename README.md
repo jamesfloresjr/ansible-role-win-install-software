@@ -66,8 +66,8 @@ apps:
 
 ```yml
 ---
-- name: Install
-  hosts: windows
+- name: Install Windows Software
+  hosts: windows_hosts
   gather_facts: no
   roles:
   - win_install_software
