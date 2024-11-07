@@ -1,6 +1,0 @@
----
-- name: Install Third Party Applications
-  hosts: windows_hosts
-  become: yes
-  roles:
-    - windows_install_software
