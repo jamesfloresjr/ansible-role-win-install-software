@@ -24,7 +24,7 @@ The directory structure is as follows:
     └── args.json
 ```
 
-To setup, create a `[repository]` in a network share. In the root of the repository you just set up, create folders with the `[software]` names (e.g. Firefox, Putty, Notepad++). Inside those folders should exist folders with the version numbers. Make sure to rename the latest software with the tag `_latest`. The PowerShell script will fail if there is not a folder with this tag. Finally, in those individual folders should contain the executables (`.exe` or `.msi`).
+To setup, create a `[repository]` in a network share. In the root of the repository you just set up, create folders with the `[software]` names (e.g. Firefox, Putty, Notepad++). Inside those folders should exist folders with the version numbers. Make sure to rename the latest software with the tag `_latest`. The PowerShell script will fail if there is not a folder with this tag. Finally, in those individual folders should contain the executables (__"exe"__ or __"msi"__).
 
 In each `[software]` folder, create a `.json` file containing arguments for the PowerShell script. For example:
 
