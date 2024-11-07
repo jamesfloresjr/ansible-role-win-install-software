@@ -72,5 +72,3 @@ apps:
   roles:
   - win_install_software
 ```
-
-## License
