@@ -50,9 +50,10 @@ These are variables that Ansible will pass through to the PowerShell script:
 
 ```yml
 ---
-# Do not include the trailing \
+# Do not include the trailing "\"
 repository: "\\\\share\\windows_software"
 
+# Name must match inside the repository structure
 apps:
   - firefox
   - putty
