@@ -1,6 +1,6 @@
 # Ansible Role: win_install_software
 
-⚠️ Currently still in development ⚠️
+⚠️ Still in development: 11/7/2024 ⚠️
 
 Install/update software on Windows hosts in an air-gapped network with Ansible.
 
