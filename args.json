@@ -1,5 +1,5 @@
 ﻿{
-    "_comment": "// These are example arguments. Modify depending on the software (e.g. Firefox, Putty, Notepad++). //"
+    "_comment": "// These are example arguments. Modify depending on the software (e.g. Firefox, Putty, Notepad++). //",
     "exe_args":  "/S",
     "msi_args":  "/quiet",
     "preferred_installer": "exe"
