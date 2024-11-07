@@ -8,6 +8,8 @@ Install/update software on Windows hosts in an air-gapped network with Ansible. 
 
 ### Setting up the repository
 
+The directory structure is as follows:
+
 ```bash
 [repository]
 ├── [software-1]
@@ -21,3 +23,19 @@ Install/update software on Windows hosts in an air-gapped network with Ansible. 
     │   └── installer_2.1.msi
     └── args.json
 ```
+
+To setup, create a `[repository]` in a network share. In the root of the repository you just set up, create folders with the `[software]` names (e.g. Firefox, Putty, Notepad++). Inside those folders should exist folders with the version numbers. Make sure to rename the latest software with the tag `_latest`. The PowerShell script will fail if there is not a folder with this tag. Finally, in those individual folders should contain the executables (`.exe` or `.msi`).
+
+In each `[software]` folder, create a `.json` file containing arguments for the PowerShell script. For example:
+
+```json
+{
+    "exe_args":  "/S",
+    "msi_args":  "/quiet",
+    "preferred_installer": "exe"
+}
+```
+
+- `exe_args`: You can find these by Googling __"[software] installer command line options"__
+- `msi_args`: You can find these by running __"msiexec.exe /help"__ in PowerShell or Cmd
+- `preferred_installer`: Specify which installer you want to prioritize (can be either __"exe"__ or __"msi"__)
