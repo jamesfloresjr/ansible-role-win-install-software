@@ -1,8 +1,12 @@
-# Windows Install Software
+# Ansible Role: win_install_software
 
 ⚠️ Currently still in development ⚠️
 
 Install/update software on Windows hosts in an air-gapped network with Ansible. Requires a repository to be setup on a network share.
+
+## Requirements
+
+Ansible setup for Microsoft Windows host communication. Click here to follow [Ansible Documentation](https://docs.ansible.com/ansible/latest/os_guide/windows_setup.html) on how to set this up.
 
 ## Prerequisites
 
@@ -57,3 +61,16 @@ apps:
 
 - `repository`: Input your repository without the trailing __"\\"__. Also, make sure to escape each __"\\"__ with another __"\\"__ (e.g. __"\\"__ turns into __"\\\\"__).
 - `apps`: This array will contain all of the software that you want to install/update. Make sure these match with the directory structure in your repository.
+
+## Example Playbook
+
+```yml
+---
+- name: Install
+  hosts: windows
+  gather_facts: no
+  roles:
+  - win_install_software
+```
+
+## License
