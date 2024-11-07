@@ -1,4 +1,4 @@
-# Install Software on Windows via Ansible
+# Install Software on Windows Hosts via Ansible
 
 ⚠️ Currently still in development ⚠️
 
