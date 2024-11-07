@@ -1,0 +1,12 @@
+---
+- name: Copy PowerShell script to remote host
+  win_copy:
+    src: files/Install-LatestApps.ps1
+    dst: C:\temp
+
+- name: Execute PowerShell script
+  win_shell: |
+    $apps = {{ apps }} | join(',')
+    C:\temp\Install-LatestApps.ps1 -Repository "{{ repository }}" -Apps ($apps -split ',')
+  args:
+    executable: powershell.exe

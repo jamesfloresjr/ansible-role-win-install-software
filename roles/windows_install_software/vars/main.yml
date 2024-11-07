@@ -1,0 +1,8 @@
+---
+# Do not include the trailing \
+repository: "\\\\share\\windows_software"
+
+apps:
+  - firefox
+  - putty
+  - notepad++
