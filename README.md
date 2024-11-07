@@ -6,7 +6,7 @@ Install/update software on Windows hosts in an air-gapped network with Ansible. 
 
 ## Prerequisites
 
-### Setting up the repository
+### 1. Setting up the repository
 
 The directory structure is as follows:
 
