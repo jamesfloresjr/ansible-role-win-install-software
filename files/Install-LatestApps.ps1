@@ -10,7 +10,11 @@ param (
 function Get-InstalledSoftware {
     # Empty hash table to contain all installed software
     $installed_software = @{}
+
+    # Empty hash table to contain the unique versions
     $installed_software_unique = @{}
+
+    # Array to ignore certain terms
     $ignore = @("Update", "Maintenance")
 
     # Installed software registry paths
@@ -27,7 +31,7 @@ function Get-InstalledSoftware {
 
     # Grab all installed software
     foreach ($path in $registry_paths) {
-        Get-ChildItem -Path $path | ForEach-Object { 
+        Get-ChildItem -Path $path | ForEach-Object {
             $name = (Get-ItemProperty -Path $_.PsPath).DisplayName
             $version = (Get-ItemProperty -Path $_.PsPath).DisplayVersion
             
@@ -36,12 +40,7 @@ function Get-InstalledSoftware {
                 # Returns 0 if it doesn't match
                 $ignore_match = ($ignore | Where-Object { $name -match $_ }).Count
 
-                switch ($ignore_match) {
-                    0 {
-                        $installed_software.Add($name, $version)
-                        break
-                    }
-                }
+                switch ($ignore_match) { 0 { $installed_software.Add($name, $version); break } }
             }
         }
     }
@@ -73,14 +72,14 @@ function Install-Exe ($Name, $Installer, $ArgList, $Latest) {
             # Command to install the EXE file (you can modify this command as needed)
             Start-Process -FilePath $Installer -ArgumentList $ArgList -Wait
         } elseif ($Latest -eq $current_version) {
-            Write-Host "$Name EXE: System is up to date."
+            Write-Output "$Name EXE: System is up to date." -ForegroundColor Green
         } else {
-            Write-Host "$Name EXE: Installer is out of date."
+            Write-Output "$Name EXE: Installer is out of date." -ForegroundColor Red
         }
 
     } catch {
         # Output a custom message
-        Write-Output "$Name EXE: An error occurred."
+        Write-Output "$Name EXE: An error occurred." -ForegroundColor Red
 
         # Output the detailed error message
         Write-Output "Error details: $($_.Exception.Message)"
@@ -101,14 +100,14 @@ function Install-Msi ($Name, $Installer, $ArgList, $Latest) {
             # Command to install the MSI file (you can modify this command as needed)
             Start-Process -FilePath msiexec.exe -ArgumentList "/i `"$Installer`" $ArgList" -Wait
         } elseif ($Latest -eq $current_version) {
-            Write-Host "$Name MSI: System is up to date."
+            Write-Output "$Name MSI: System is up to date." -ForegroundColor Green
         } else {
-            Write-Host "$Name MSI: Installer is out of date."
+            Write-Output "$Name MSI: Installer is out of date." -ForegroundColor Red
         }
 
     } catch {
         # Output a custom message
-        Write-Output "$Name MSI: An error occurred."
+        Write-Output "$Name MSI: An error occurred." -ForegroundColor Red
 
         # Output the detailed error message
         Write-Output "Error details: $($_.Exception.Message)"
@@ -147,6 +146,6 @@ foreach ($app in $Apps) {
     }
     # Fails if variable is not specified
     else {
-        Write-Output "Preferred installer not specified."
+        Write-Output "Preferred installer not specified." -ForegroundColor Red
     }
 }
