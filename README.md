@@ -1,5 +1,7 @@
-Currently still in development.
+# Ansible Playbook Install Software on Windows
 
-# Ansible Playbook - Windows Install Software
-## Description
-Ansible Playbook that allows you to install/update software in an air-gapped network. Requires a repository to be setup on a network share.
+⚠️ Currently still in development ⚠️
+
+Install/update software on Windows hosts in an air-gapped network. Requires a repository to be setup on a network share.
+
+## Prerequisites
