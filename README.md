@@ -44,7 +44,7 @@ In each `[software]` folder, create a `.json` file containing arguments for the 
 - `msi_args`: You can find these by running __"msiexec.exe /help"__ in PowerShell or Cmd.
 - `preferred_installer`: Specify which installer you want to prioritize (can be either __"exe"__ or __"msi"__).
 
-### 2. Creating /vars/main.yml
+### 2. Creating /vars/role_vars.yml
 
 These are variables that Ansible will pass through to the PowerShell script:
 
