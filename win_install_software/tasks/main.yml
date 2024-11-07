@@ -19,11 +19,11 @@
     C:\temp\Install-Latest.ps1 -Repository "{{ repository }}" -Apps ($apps -split ',')
   args:
     executable: powershell.exe
-  register: result
+  register: output
 
 - name: "PowerShell script output"
   debug:
-    var: result.stdout_lines
+    var: output.stdout_lines
 
 always:
   - name: "Remove PowerShell script from remote host"
