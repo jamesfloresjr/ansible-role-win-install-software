@@ -62,8 +62,9 @@ function Get-InstalledSoftware {
 function Install-Exe ($Name, $Installer, $ArgList, $Latest) {
     # Compare latest and installed version
     try {
-        # Get current version installed
-        $current_version = [System.Version]$installed.( $($installed.Keys -like "*$Name*") )
+        # Get current version installed, if $null sets the version to 0.0 to ensure installation
+        try { $current_version = [System.Version]$installed.( $( $installed.Keys -like "*$Name*" ) ) }
+        catch { $current_version = [System.Version]"0.0" }
 
         # Stop running processes
         Get-Process -Name "*$Name*" | Stop-Process -Force
@@ -71,18 +72,19 @@ function Install-Exe ($Name, $Installer, $ArgList, $Latest) {
         if ($Latest -gt $current_version) {
             # Command to install the EXE file (you can modify this command as needed)
             Start-Process -FilePath $Installer -ArgumentList $ArgList -Wait
+            Write-Output "$Name EXE: Successfully installed/updated.`n"
         } elseif ($Latest -eq $current_version) {
-            Write-Output "$Name EXE: System is up to date." -ForegroundColor Green
+            Write-Output "$Name EXE: System is up to date.`n"
         } else {
-            Write-Output "$Name EXE: Installer is out of date." -ForegroundColor Red
+            Write-Output "$Name EXE: Software is already up-to-date.`n"
         }
 
     } catch {
         # Output a custom message
-        Write-Output "$Name EXE: An error occurred." -ForegroundColor Red
+        Write-Output "$Name EXE: An error occurred."
 
         # Output the detailed error message
-        Write-Output "Error details: $($_.Exception.Message)"
+        Write-Output "`tError details: $($_.Exception.Message)`n"
     }
 }
 
@@ -90,27 +92,30 @@ function Install-Exe ($Name, $Installer, $ArgList, $Latest) {
 function Install-Msi ($Name, $Installer, $ArgList, $Latest) {
     # Compare latest and installed version
     try {
-        # Get current version installed
-        $current_version = [System.Version]$installed.( $( $installed.Keys -like "*$Name*" ) )
+        # Get current version installed, if $null sets the version to 0.0 to ensure installation
+        try { $current_version = [System.Version]$installed.( $( $installed.Keys -like "*$Name*" ) ) }
+        catch { $current_version = [System.Version]"0.0" }
 
         # Stop running processes
         Get-Process -Name "*$Name*" | Stop-Process -Force
+        Get-Process -Name "msiexec" | Stop-Process -Force
 
         if ($Latest -gt $current_version) {
             # Command to install the MSI file (you can modify this command as needed)
             Start-Process -FilePath msiexec.exe -ArgumentList "/i `"$Installer`" $ArgList" -Wait
+            Write-Output "$Name MSI: Successfully installed/updated.`n"
         } elseif ($Latest -eq $current_version) {
-            Write-Output "$Name MSI: System is up to date." -ForegroundColor Green
+            Write-Output "$Name MSI: System is up to date.`n"
         } else {
-            Write-Output "$Name MSI: Installer is out of date." -ForegroundColor Red
+            Write-Output "$Name MSI: Software is already up-to-date.`n"
         }
 
     } catch {
         # Output a custom message
-        Write-Output "$Name MSI: An error occurred." -ForegroundColor Red
+        Write-Output "$Name MSI: An error occurred."
 
         # Output the detailed error message
-        Write-Output "Error details: $($_.Exception.Message)"
+        Write-Output "`tError details: $($_.Exception.Message)`n"
     }
 }
 
@@ -146,6 +151,6 @@ foreach ($app in $Apps) {
     }
     # Fails if variable is not specified
     else {
-        Write-Output "Preferred installer not specified." -ForegroundColor Red
+        Write-Output "Preferred installer not specified." 
     }
 }
