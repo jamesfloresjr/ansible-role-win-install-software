@@ -75,10 +75,3 @@ apps:
   roles:
   - win_install_software
 ```
-
-## Working Software
-
-|    Software     |     preferred_installer     |     exe_args     |     msi_args     |
-| --------------- | --------------------------- | ---------------- | ---------------- |
-| Firefox         | exe                         | /S               |                  |
-| Putty           | msi                         |                  | /quiet           |
